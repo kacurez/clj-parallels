@@ -47,4 +47,4 @@
 
 (deftest generative-test
   (testing "generative tests"
-    (is (test-and-check `pexecute-gen 20))))
+    (is (test-and-check `pexecute-gen 3))))
