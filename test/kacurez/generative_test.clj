@@ -1,8 +1,10 @@
 (ns kacurez.generative-test
-  (:require [clojure.spec.alpha :as s]
-            [clojure.spec.test.alpha :as stest]
-            [clojure.test :refer :all]
-            [kacurez.clj-parallels :refer :all]))
+  (:require
+   [clojure.test.check :as tc]
+   [clojure.spec.alpha :as s]
+   [clojure.spec.test.alpha :as stest]
+   [clojure.test :refer :all]
+   [kacurez.clj-parallels :refer :all]))
 
 
 (defn inc-or-throw [input]
@@ -19,7 +21,7 @@
          (reduce + ret)))))
 
 (s/def ::input-col (s/coll-of (s/and int? #(>= % 0) #(< % 500))
-                    :max-count 10 :distinct true))
+                              :max-count 10 :distinct true))
 (s/def ::workers-cnt (s/and int? #(> % 0) #(< % 100)))
 (s/fdef pexecute-gen :args (s/cat :input-coll ::input-col :workers-cnt ::workers-cnt)
         :ret (s/nilable (s/coll-of int?))
