@@ -1,0 +1,17 @@
+language: clojure
+
+lein: 2.7.1
+
+cache:
+  directories:
+    - $HOME/.m2
+
+script:
+  - lein check
+  - lein test
+
+deploy:
+  - provider: script
+    script: scripts/deploy.sh
+    on:
+      tags: true
