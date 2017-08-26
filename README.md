@@ -18,7 +18,8 @@ with Leiningen:
 
 ### pexecute
 `(pexecute execute-fn input-coll workers-cnt)` `(pexecute execute-fn input-coll)`
-executes `execute-fn` on each item from `input-coll` in parallel by number of`workers-cnt`.
+
+Executes `execute-fn` on each item from `input-coll` in parallel by number of`workers-cnt`.
 
 
 
