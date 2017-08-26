@@ -1,6 +1,6 @@
 (defproject org.clojars.kacurez/clj-parallels (or (System/getenv "PROJECT_VERSION")  "0.0.0")
-  :description "Study and experiments with parallelism via async.io"
-  :url "http://example.com/FIXME"
+  :description "Parallel function execution on a data sequence via clojure/core.async"
+  :url "https://github.com/kacurez/clj-parallels"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/core.async "0.3.443"]

@@ -11,7 +11,7 @@ A Clojure library designed to execute a function on a data sequence in parallel.
 ## Installation
 with Leiningen:
 ```
-[org.clojars.kacurez/clj-parallels "0.2.0"]
+[org.clojars.kacurez/clj-parallels "0.2.2"]
 ```
 
 ## Documentation
