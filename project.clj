@@ -4,8 +4,7 @@
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/core.async "0.3.443"]
-                 [org.clojure/clojure "1.9.0-alpha17"]
-                 [org.clojure/test.check "0.9.0"]]
+                 [org.clojure/clojure "1.9.0-alpha17"]]
   :repositories [["snapshots" {:url "https://clojars.org/repo"
                                :username :env/clojars_username
                                :password :env/clojars_password}]
@@ -14,4 +13,5 @@
                               :password :env/clojars_password
                               :sign-releases false}]]
   :target-path "target/%s"
-  :profiles {:uberjar {:aot :all}})
+  :profiles {:uberjar {:aot :all}
+             :dev {:dependencies [[org.clojure/test.check "0.9.0"]]}})
