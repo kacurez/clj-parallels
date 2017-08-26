@@ -1,4 +1,6 @@
 [![Clojars Project](https://img.shields.io/clojars/v/org.clojars.kacurez/clj-parallels.svg)](https://clojars.org/org.clojars.kacurez/clj-parallels)
+[![Build Status](https://travis-ci.org/kacurez/clj-parallels.svg?branch=master)](https://travis-ci.org/kacurez/clj-parallels)
+
 # clj-parallels
 
 A Clojure library designed to execute a function on a collection in parallel. Primary intended as my study of
