@@ -29,20 +29,20 @@
   (close! error-chan))
 
 
-(s/fdef pexecute :args (s/cat :execute-fn fn? :input-coll (s/nilable (s/coll-of any?)) :workers-cnt (s/? (s/and int? #(> % 0)))))
+(s/fdef pexecute :args (s/cat :execute-fn fn? :input-seq (s/nilable (s/* any?)) :workers-cnt (s/? (s/and int? #(> % 0)))))
 (defn pexecute
-  "takes items from @input-coll and apply @execute-fn to every item from the collection in parallel.
-  The number of maximum parallel executions at time is defined by @workers-cnt. Returns collection of applied results.
+  "takes items from @input-seq and apply @execute-fn to every item from the sequence in parallel.
+  The number of maximum parallel executions at time is defined by @workers-cnt. Returns sequence of applied results.
   The order of results is not kept. Throws error and won't continue if one of the executions throws error."
-  ([execute-fn input-coll]
-   (pexecute execute-fn input-coll 5))
-  ([execute-fn input-coll workers-cnt]
+  ([execute-fn input-seq]
+   (pexecute execute-fn input-seq 5))
+  ([execute-fn input-seq workers-cnt]
    (let [input-chan (chan)
          error-chan (chan (dropping-buffer 1))
-         results-chan (chan (buffer (count input-coll)))
+         results-chan (chan (buffer (count input-seq)))
          create-process (fn [pid] (run-process pid input-chan error-chan results-chan execute-fn))
          processors-chans (doall (map create-process (range 0 workers-cnt)))]
-     (loop [input input-coll]
+     (loop [input input-seq]
        (if (not-empty input)
          (let [item (first input)
                [chan-result chan-taken] (alts!! [error-chan [input-chan {:input item}]])]

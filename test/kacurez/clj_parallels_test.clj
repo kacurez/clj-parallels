@@ -7,9 +7,9 @@
 (deftest pexecute-test
   (testing "execute and compare result"
     (let [input [1 2 3 4 5]
-          coll (atom '())
-          result (pexecute #(swap! coll conj %) input 3)]
-      (is (= (set input) (set @coll)))
+          result-seq (atom '())
+          result (pexecute #(swap! result-seq conj %) input 3)]
+      (is (= (set input) (set @result-seq)))
       (is (= (count result) (count input)))))
 
   (testing "nil results, should pass"
@@ -24,7 +24,7 @@
     (let [result (pexecute identity [nil nil nil] 10)]
       (is (every? nil? result))))
 
-  (testing "empty input collection, should return empty list"
+  (testing "empty input sequence, should return empty list"
     (let [result (pexecute println [])]
       (is (= result '()))))
 
